@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A854E64A1C7DB9FB00C7CEA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */; };
+		A854E64C1C7DB9FB00C7CEA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */; };
+		A854E64F1C7DB9FB00C7CEA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */; };
+		A854E6511C7DB9FB00C7CEA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A854E6501C7DB9FB00C7CEA4 /* Assets.xcassets */; };
+		A854E6541C7DB9FB00C7CEA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */; };
+		A854E65C1C7DC13600C7CEA4 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */; };
+		A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E65F1C7DC31800C7CEA4 /* Alarm.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A854E6461C7DB9FB00C7CEA4 /* AlarmCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A854E64E1C7DB9FB00C7CEA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A854E6501C7DB9FB00C7CEA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A854E6531C7DB9FB00C7CEA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A854E6551C7DB9FB00C7CEA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		A854E65F1C7DC31800C7CEA4 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A854E6431C7DB9FB00C7CEA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A854E63D1C7DB9FB00C7CEA4 = {
+			isa = PBXGroup;
+			children = (
+				A854E6481C7DB9FB00C7CEA4 /* AlarmCalendar */,
+				A854E6471C7DB9FB00C7CEA4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A854E6471C7DB9FB00C7CEA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A854E6461C7DB9FB00C7CEA4 /* AlarmCalendar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A854E6481C7DB9FB00C7CEA4 /* AlarmCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */,
+				A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */,
+				A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */,
+				A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */,
+				A854E65F1C7DC31800C7CEA4 /* Alarm.swift */,
+				A854E6501C7DB9FB00C7CEA4 /* Assets.xcassets */,
+				A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */,
+				A854E6551C7DB9FB00C7CEA4 /* Info.plist */,
+			);
+			path = AlarmCalendar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A854E6451C7DB9FB00C7CEA4 /* AlarmCalendar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A854E6581C7DB9FB00C7CEA4 /* Build configuration list for PBXNativeTarget "AlarmCalendar" */;
+			buildPhases = (
+				A854E6421C7DB9FB00C7CEA4 /* Sources */,
+				A854E6431C7DB9FB00C7CEA4 /* Frameworks */,
+				A854E6441C7DB9FB00C7CEA4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AlarmCalendar;
+			productName = AlarmCalendar;
+			productReference = A854E6461C7DB9FB00C7CEA4 /* AlarmCalendar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A854E63E1C7DB9FB00C7CEA4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = bahus;
+				TargetAttributes = {
+					A854E6451C7DB9FB00C7CEA4 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = THZ88VX669;
+					};
+				};
+			};
+			buildConfigurationList = A854E6411C7DB9FB00C7CEA4 /* Build configuration list for PBXProject "AlarmCalendar" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A854E63D1C7DB9FB00C7CEA4;
+			productRefGroup = A854E6471C7DB9FB00C7CEA4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A854E6451C7DB9FB00C7CEA4 /* AlarmCalendar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A854E6441C7DB9FB00C7CEA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A854E6541C7DB9FB00C7CEA4 /* LaunchScreen.storyboard in Resources */,
+				A854E6511C7DB9FB00C7CEA4 /* Assets.xcassets in Resources */,
+				A854E64F1C7DB9FB00C7CEA4 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A854E6421C7DB9FB00C7CEA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A854E64C1C7DB9FB00C7CEA4 /* ViewController.swift in Sources */,
+				A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */,
+				A854E64A1C7DB9FB00C7CEA4 /* AppDelegate.swift in Sources */,
+				A854E65C1C7DC13600C7CEA4 /* AlarmCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A854E64E1C7DB9FB00C7CEA4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A854E6531C7DB9FB00C7CEA4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A854E6561C7DB9FB00C7CEA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A854E6571C7DB9FB00C7CEA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A854E6591C7DB9FB00C7CEA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = AlarmCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bahus.AlarmCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A854E65A1C7DB9FB00C7CEA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = AlarmCalendar/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bahus.AlarmCalendar;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A854E6411C7DB9FB00C7CEA4 /* Build configuration list for PBXProject "AlarmCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A854E6561C7DB9FB00C7CEA4 /* Debug */,
+				A854E6571C7DB9FB00C7CEA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A854E6581C7DB9FB00C7CEA4 /* Build configuration list for PBXNativeTarget "AlarmCalendar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A854E6591C7DB9FB00C7CEA4 /* Debug */,
+				A854E65A1C7DB9FB00C7CEA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A854E63E1C7DB9FB00C7CEA4 /* Project object */;
+}
