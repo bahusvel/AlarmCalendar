@@ -17,11 +17,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 			alarms.append(Alarm(date: NSDate(), isRepeated: false))
 		}
 	}
+    
+    func addAlarm(alarm: Alarm){
+        alarms.append(alarm)
+        scheduleAlarm(alarm)
+    }
+    
+    func checkNotificationSettings(){
+        
+    }
+    
+    func scheduleAlarm(alarm: Alarm){
+        let notification = UILocalNotification()
+        notification.fireDate = alarm.date
+        notification.alertTitle = "Alarm"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM hh:mm"
+        notification.alertBody = dateFormatter.stringFromDate(alarm.date)
+        notification.alertAction = "Dismiss"
+        notification.soundName = "AlarmBell.caf"
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
 		// Do any additional setup after loading the view, typically from a nib.
-		sampleAlarms(5)
+        checkNotificationSettings()
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -43,7 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AlarmCell
 		let alarm = alarms[indexPath.row]
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "dd-MM"
+		dateFormatter.dateFormat = "dd/MM"
 		let timeFormatter = NSDateFormatter()
 		timeFormatter.dateFormat = "hh:mm"
 		

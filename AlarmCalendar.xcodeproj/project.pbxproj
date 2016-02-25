@@ -14,6 +14,8 @@
 		A854E6541C7DB9FB00C7CEA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */; };
 		A854E65C1C7DC13600C7CEA4 /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */; };
 		A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E65F1C7DC31800C7CEA4 /* Alarm.swift */; };
+		A888C0641C7E930100FCA6EB /* AlarmBell.caf in Resources */ = {isa = PBXBuildFile; fileRef = A888C0631C7E92D600FCA6EB /* AlarmBell.caf */; };
+		A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A854E6551C7DB9FB00C7CEA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		A854E65F1C7DC31800C7CEA4 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
+		A888C0631C7E92D600FCA6EB /* AlarmBell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmBell.caf; sourceTree = "<group>"; };
+		A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 				A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */,
 				A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */,
 				A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */,
+				A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */,
 				A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */,
+				A888C0631C7E92D600FCA6EB /* AlarmBell.caf */,
 				A854E65F1C7DC31800C7CEA4 /* Alarm.swift */,
 				A854E6501C7DB9FB00C7CEA4 /* Assets.xcassets */,
 				A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */,
@@ -132,6 +138,7 @@
 				A854E6541C7DB9FB00C7CEA4 /* LaunchScreen.storyboard in Resources */,
 				A854E6511C7DB9FB00C7CEA4 /* Assets.xcassets in Resources */,
 				A854E64F1C7DB9FB00C7CEA4 /* Main.storyboard in Resources */,
+				A888C0641C7E930100FCA6EB /* AlarmBell.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +151,7 @@
 			files = (
 				A854E64C1C7DB9FB00C7CEA4 /* ViewController.swift in Sources */,
 				A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */,
+				A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */,
 				A854E64A1C7DB9FB00C7CEA4 /* AppDelegate.swift in Sources */,
 				A854E65C1C7DC13600C7CEA4 /* AlarmCell.swift in Sources */,
 			);
@@ -297,6 +305,7 @@
 				A854E65A1C7DB9FB00C7CEA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
