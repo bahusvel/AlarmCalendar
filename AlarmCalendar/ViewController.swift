@@ -58,13 +58,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     static func addOrReplace(alarm: Alarm, alarms: [Alarm]) -> [Alarm]{
-        var newAlarms = alarms.filter({ (alarm1) -> Bool in
-            alarm1.id != alarm.id
-        })
+		var newAlarms = deleteAlarm(alarm, from: alarms)
         newAlarms.append(alarm)
         return newAlarms
     }
-    
+	
+	static func deleteAlarm(delete: Alarm, from:[Alarm]) -> [Alarm]{
+		return from.filter({ (alarm1) -> Bool in
+			alarm1.id != delete.id
+		})
+	}
+	
     func clearExpiredAlarms(){
         alarms = alarms.filter({(alarm) -> Bool in alarm.date.compare(NSDate()) == NSComparisonResult.OrderedDescending})
         saveAlarms()
@@ -152,7 +156,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
 		return cell
 	}
-    
+	
+	func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if (editingStyle == .Delete) {
+			switch indexPath.section{
+			case 0:
+				alarms = ViewController.deleteAlarm(alarms[indexPath.row], from: alarms)
+			case 1:
+				repeatedAlarms = ViewController.deleteAlarm(repeatedAlarms[indexPath.row], from: repeatedAlarms)
+			default:
+				print("Unimplemented Case")
+			}
+			saveAlarms()
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+		}
+	}
+	
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let cell = sender as? AlarmCell{
             let alarmViewController = segue.destinationViewController as? AddAlarmViewController
