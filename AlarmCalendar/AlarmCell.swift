@@ -11,8 +11,9 @@ import UIKit
 class AlarmCell: UITableViewCell {
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var timeLabel: UILabel!
-	@IBOutlet weak var repeatLabel: UILabel!
+	@IBOutlet weak var label: UILabel!
 	@IBOutlet weak var enabledSwitch: UISwitch!
+    var alarm: Alarm? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()

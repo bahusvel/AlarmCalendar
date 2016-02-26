@@ -16,6 +16,7 @@
 		A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = A854E65F1C7DC31800C7CEA4 /* Alarm.swift */; };
 		A888C0641C7E930100FCA6EB /* AlarmBell.caf in Resources */ = {isa = PBXBuildFile; fileRef = A888C0631C7E92D600FCA6EB /* AlarmBell.caf */; };
 		A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */; };
+		A888C0681C7FF44400FCA6EB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888C0671C7FF44400FCA6EB /* SettingsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A854E65F1C7DC31800C7CEA4 /* Alarm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		A888C0631C7E92D600FCA6EB /* AlarmBell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmBell.caf; sourceTree = "<group>"; };
 		A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
+		A888C0671C7FF44400FCA6EB /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */,
+				A888C0671C7FF44400FCA6EB /* SettingsController.swift */,
 				A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */,
 				A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */,
 				A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */,
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A888C0681C7FF44400FCA6EB /* SettingsController.swift in Sources */,
 				A854E64C1C7DB9FB00C7CEA4 /* ViewController.swift in Sources */,
 				A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */,
 				A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */,

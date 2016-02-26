@@ -9,8 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    
 	var alarms = [Alarm]()
-	let cellIdentifier = "alarmCell"
+    var repeatedAlarms = [Alarm]()
+	static let cellIdentifier = "alarmCell"
+    static let documentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let archiveURL = documentsDirectory.URLByAppendingPathComponent("alarms")
 	
 	func sampleAlarms(number: Int){
 		for _ in 0..<number{
@@ -18,9 +25,49 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
     
+    func saveAlarms(){
+        let allAlarms = ["scheduled": alarms, "repeated": repeatedAlarms]
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(allAlarms, toFile: ViewController.archiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save Alarms")
+        }
+    }
+    
+    func loadAlarms(){
+        if let allAlarms = NSKeyedUnarchiver.unarchiveObjectWithFile(ViewController.archiveURL.path!) as? [String: [Alarm]]{
+            alarms = allAlarms["scheduled"]!
+            repeatedAlarms = allAlarms["repeated"]!
+        }
+        sortAlarms()
+    }
+    
+    func sortAlarms(){
+        alarms.sortInPlace({(a, b) -> Bool in a.date.compare(b.date) == NSComparisonResult.OrderedAscending})
+    }
+    
     func addAlarm(alarm: Alarm){
-        alarms.append(alarm)
+        loadAlarms()
+        if !alarm.isRepeated {
+            alarms = ViewController.addOrReplace(alarm, alarms: alarms)
+        } else {
+            repeatedAlarms = ViewController.addOrReplace(alarm, alarms: repeatedAlarms)
+        }
+        sortAlarms()
+        saveAlarms()
         scheduleAlarm(alarm)
+    }
+    
+    static func addOrReplace(alarm: Alarm, alarms: [Alarm]) -> [Alarm]{
+        var newAlarms = alarms.filter({ (alarm1) -> Bool in
+            alarm1.id != alarm.id
+        })
+        newAlarms.append(alarm)
+        return newAlarms
+    }
+    
+    func clearExpiredAlarms(){
+        alarms = alarms.filter({(alarm) -> Bool in alarm.date.compare(NSDate()) == NSComparisonResult.OrderedDescending})
+        saveAlarms()
     }
     
     func checkNotificationSettings(){
@@ -43,8 +90,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		super.viewDidLoad()
         let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
-        
 		// Do any additional setup after loading the view, typically from a nib.
+        loadAlarms()
+        clearExpiredAlarms()
         checkNotificationSettings()
 	}
 
@@ -55,27 +103,67 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
+		return 2
 	}
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return alarms.count
+        switch section{
+        case 0:
+            return alarms.count
+        case 1:
+            return repeatedAlarms.count
+        default:
+            return 0
+        }
 	}
 	
-	
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section{
+        case 0:
+            return "Scheduled Alarms"
+        case 1:
+            return "Repeated Alarms"
+        default:
+            return "Not A section"
+        }
+    }
+    
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! AlarmCell
-		let alarm = alarms[indexPath.row]
+		let cell = tableView.dequeueReusableCellWithIdentifier(ViewController.cellIdentifier, forIndexPath: indexPath) as! AlarmCell
+        var alarm: Alarm? = nil
+        switch indexPath.section{
+        case 0:
+            alarm = alarms[indexPath.row]
+            cell.enabledSwitch.hidden = true
+        case 1:
+            alarm = repeatedAlarms[indexPath.row]
+            cell.enabledSwitch.hidden = false
+        default:
+            alarm = nil
+        }
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM"
 		let timeFormatter = NSDateFormatter()
 		timeFormatter.dateFormat = "hh:mm"
 		
-		cell.dateLabel.text = dateFormatter.stringFromDate(alarm.date)
-		cell.timeLabel.text = timeFormatter.stringFromDate(alarm.date)
-		
+		cell.dateLabel.text = dateFormatter.stringFromDate(alarm!.date)
+		cell.timeLabel.text = timeFormatter.stringFromDate(alarm!.date)
+		cell.alarm = alarm
+        
 		return cell
 	}
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let cell = sender as? AlarmCell{
+            let alarmViewController = segue.destinationViewController as? AddAlarmViewController
+            alarmViewController!.alarm = cell.alarm
+        } else if let barButton = sender as? UIBarButtonItem {
+            if barButton == addButton{
+                let alarmViewController = segue.destinationViewController as? AddAlarmViewController
+                alarmViewController!.alarm = nil
+            }
+        }
+    }
 
 }
 
