@@ -23,11 +23,7 @@ class SettingsController: UIViewController {
     }
     
     @IBAction func clearAll(sender: AnyObject) {
-        do {
-        try NSFileManager().removeItemAtPath(ViewController.archiveURL.path!)
-        } catch{
-            
-        }
+        AlarmManager.clearAll()
     }
 
     /*

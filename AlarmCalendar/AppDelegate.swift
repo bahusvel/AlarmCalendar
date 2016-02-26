@@ -15,9 +15,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+		notificationSetup()
 		return true
 	}
 
+	func notificationSetup(){
+		let dismissAction = UIMutableUserNotificationAction()
+		dismissAction.identifier = "DISMISS_IDENTIFIER"
+		dismissAction.title = "Dismiss"
+		dismissAction.activationMode = .Background;
+		dismissAction.destructive = true;
+		dismissAction.authenticationRequired = false;
+		
+		let snoozeAction = UIMutableUserNotificationAction()
+		snoozeAction.identifier = "SNOOZE_IDENTIFIER"
+		snoozeAction.title = "Snooze"
+		snoozeAction.activationMode = .Background;
+		snoozeAction.destructive = false;
+		snoozeAction.authenticationRequired = false;
+		
+		let alarmCategory = UIMutableUserNotificationCategory()
+		alarmCategory.identifier = "ALARM_CATEGORY"
+		alarmCategory.setActions([snoozeAction, dismissAction], forContext:.Default)
+		
+		let notificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: [alarmCategory])
+		UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+	}
+	
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -40,6 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
 
+	func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+		switch identifier!{
+		case "DISMISS_IDENTIFIER":
+			print("Dismissed")
+		case "SNOOZE_IDENTIFIER":
+			print("Snoozed")
+		default:
+			print("Unknown Identifier")
+			
+		}
+		completionHandler()
+	}
 
 }
 

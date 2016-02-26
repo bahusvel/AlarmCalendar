@@ -43,8 +43,7 @@ class AddAlarmViewController: UIViewController {
             if (alarm != nil){
                 alarm1.id = alarm!.id
             }
-            let mainViewController = segue.destinationViewController as? ViewController
-            mainViewController!.addAlarm(alarm1)
+			AlarmManager.addAlarm(alarm1)
         }
     }
     
