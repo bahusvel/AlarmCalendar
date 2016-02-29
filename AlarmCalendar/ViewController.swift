@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
 
@@ -23,11 +24,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
         AlarmManager.loadAlarms()
-		AlarmManager.clearExpiredAlarms()
-        checkNotificationSettings()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationEnteredForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
 	}
-	
-
+    
+    @objc func applicationEnteredForeground(notification: NSNotification){
+        AlarmManager.clearExpiredAlarms()
+        tableView.reloadData()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        checkNotificationSettings()
+        AlarmManager.clearExpiredAlarms()
+    }
+    
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.

@@ -38,7 +38,9 @@ class AddAlarmViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (sender as? UIBarButtonItem == doneButton) {
-            let alarm1 = Alarm(date: datePicker.date, isRepeated: false)
+            let time = floor(datePicker.date.timeIntervalSinceReferenceDate / 60.0) * 60.0
+            let roundedDate = NSDate(timeIntervalSinceReferenceDate: time)
+            let alarm1 = Alarm(date: roundedDate, isRepeated: false)
             alarm1.title = alarmTitle.text
             if (alarm != nil){
                 alarm1.id = alarm!.id
