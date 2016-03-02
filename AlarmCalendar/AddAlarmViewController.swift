@@ -68,7 +68,9 @@ class AddAlarmViewController: UIViewController, MultiSelectSegmentedControlDeleg
             if selectedRepeats.count > 0 {
                 willRepeat = true
             }
-            let alarm1 = Alarm(date: datePicker.date, isRepeated: willRepeat)
+            let time = floor(datePicker.date.timeIntervalSinceReferenceDate / 60) * 60
+            let date = NSDate(timeIntervalSinceReferenceDate: time)
+            let alarm1 = Alarm(date: date, isRepeated: willRepeat)
             if selectedRepeats.count > 0 {
                 alarm1.repeatedDays = selectedRepeats.sort()
             }

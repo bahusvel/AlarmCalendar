@@ -9,6 +9,8 @@
 import UIKit
 
 class AlarmCell: UITableViewCell {
+    
+    @IBOutlet weak var amLabel: UILabel!
 	@IBOutlet weak var dateLabel: UILabel!
 	@IBOutlet weak var timeLabel: UILabel!
 	@IBOutlet weak var label: UILabel!
@@ -29,6 +31,12 @@ class AlarmCell: UITableViewCell {
         return text.substringToIndex(text.endIndex.advancedBy(-2))
     }
     
+    static func isAM(date: NSDate) -> Bool{
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let cs = calendar.components(.Hour, fromDate: date)
+        return cs.hour >= 0 && cs.hour <= 11
+    }
+    
     func initWithAlarm(alarm: Alarm){
         self.alarm = alarm
         if alarm.isRepeated {
@@ -46,6 +54,11 @@ class AlarmCell: UITableViewCell {
         timeFormatter.dateFormat = "hh:mm"
         dateLabel.text = dateFormatter.stringFromDate(alarm.date)
         timeLabel.text = timeFormatter.stringFromDate(alarm.date)
+        if AlarmCell.isAM(alarm.date){
+            amLabel.text = "AM"
+        } else {
+            amLabel.text = "PM"
+        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

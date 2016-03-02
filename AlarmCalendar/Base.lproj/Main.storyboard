@@ -163,6 +163,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="amLabel" destination="u1x-bO-cX1" id="RMl-7g-9a3"/>
                                             <outlet property="dateLabel" destination="k7e-SQ-7sO" id="39J-hp-Veo"/>
                                             <outlet property="enabledSwitch" destination="RAl-3a-Nf4" id="qNx-Il-V8S"/>
                                             <outlet property="label" destination="cVI-fk-Lq2" id="y1f-Jg-4Ts"/>
