@@ -28,9 +28,10 @@ class AddAlarmViewController: UIViewController, MultiSelectSegmentedControlDeleg
             alarmTitle.text = alarm!.title
             repeatControl.selectedSegmentIndexes = makeIndexSet(alarm!.repeatedDays)
         }
+        setDatePickerState()
     }
     
-    func multiSelect(multiSelecSegmendedControl: MultiSelectSegmentedControl!, didChangeValue value: Bool, atIndex index: UInt) {
+    func setDatePickerState(){
         if repeatControl.selectedSegmentIndexes.count > 0 {
             datePicker.datePickerMode = .Time
             datePicker.minuteInterval = 5
@@ -38,6 +39,10 @@ class AddAlarmViewController: UIViewController, MultiSelectSegmentedControlDeleg
             datePicker.datePickerMode = .DateAndTime
             datePicker.minuteInterval = 5
         }
+    }
+    
+    func multiSelect(multiSelecSegmendedControl: MultiSelectSegmentedControl!, didChangeValue value: Bool, atIndex index: UInt) {
+        setDatePickerState()
     }
     
     func makeIndexSet(from: [Int]) -> NSIndexSet{
@@ -68,10 +73,11 @@ class AddAlarmViewController: UIViewController, MultiSelectSegmentedControlDeleg
                 alarm1.repeatedDays = selectedRepeats.sort()
             }
             alarm1.title = alarmTitle.text
-            if (alarm != nil){
-                alarm1.id = alarm!.id
+            if alarm == nil{
+                AlarmManager.addAlarm(alarm1)
+            } else {
+                AlarmManager.editAlarm(alarm!, new: alarm1)
             }
-			AlarmManager.addAlarm(alarm1)
         }
     }
     

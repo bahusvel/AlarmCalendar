@@ -44,14 +44,19 @@ class AlarmManager{
 		AlarmManager.alarms.sortInPlace({(a, b) -> Bool in a.date.compare(b.date) == NSComparisonResult.OrderedAscending})
 	}
 	
-	static func addAlarm(alarm: Alarm){
-		if alarm.isRepeated {
-			AlarmManager.addOrReplace(alarm, alarmType: .REPEATED)
-		} else {
-			AlarmManager.addOrReplace(alarm, alarmType: .SCHEDULED)
-		}
+    static func addAlarm(alarm: Alarm){
+        if alarm.isRepeated{
+            AlarmManager.repeatedAlarms.append(alarm)
+        } else {
+            AlarmManager.alarms.append(alarm)
+        }
 		saveAlarms()
 	}
+    
+    static func editAlarm(old: Alarm, new: Alarm){
+        deleteAlarm(old)
+        addAlarm(new)
+    }
     
     static func makeNotification(alarm: Alarm) -> UILocalNotification{
         let notification = UILocalNotification()
@@ -117,32 +122,19 @@ class AlarmManager{
 		AlarmManager.saveAlarms()
 	}
 	
-	static func addOrReplace(alarm: Alarm, alarmType: AlarmType){
-		deleteAlarm(alarm, alarmType: alarmType)
-		switch alarmType{
-		case .REPEATED:
-			AlarmManager.repeatedAlarms.append(alarm)
-		case .SCHEDULED:
-			AlarmManager.alarms.append(alarm)
-		}
-		AlarmManager.saveAlarms()
-	}
-	
-	static func deleteAlarm(delete: Alarm, alarmType: AlarmType){
+	static func deleteAlarm(delete: Alarm){
 		var from: [Alarm]? = nil
-		switch alarmType{
-		case .REPEATED:
+        if delete.isRepeated {
 			from = AlarmManager.repeatedAlarms
-		case .SCHEDULED:
+        } else {
 			from = AlarmManager.alarms
 		}
 		from = from!.filter({ (alarm1) -> Bool in
 			alarm1.id != delete.id
 		})
-		switch alarmType{
-		case .REPEATED:
+        if delete.isRepeated {
 			AlarmManager.repeatedAlarms = from!
-		case .SCHEDULED:
+        } else {
 			AlarmManager.alarms = from!
 		}
 		AlarmManager.saveAlarms()

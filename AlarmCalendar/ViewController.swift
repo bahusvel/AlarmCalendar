@@ -66,22 +66,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         switch indexPath.section{
         case 0:
             alarm = AlarmManager.alarms[indexPath.row]
-            cell.enabledSwitch.hidden = true
         case 1:
             alarm = AlarmManager.repeatedAlarms[indexPath.row]
-            cell.enabledSwitch.hidden = false
         default:
             alarm = nil
         }
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "dd/MM"
-		let timeFormatter = NSDateFormatter()
-		timeFormatter.dateFormat = "hh:mm"
-		
-		cell.dateLabel.text = dateFormatter.stringFromDate(alarm!.date)
-		cell.timeLabel.text = timeFormatter.stringFromDate(alarm!.date)
-		cell.alarm = alarm
-        
+        cell.initWithAlarm(alarm!)
 		return cell
 	}
 	
@@ -89,9 +79,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 		if (editingStyle == .Delete) {
 			switch indexPath.section{
 			case 0:
-				AlarmManager.deleteAlarm(AlarmManager.alarms[indexPath.row], alarmType: AlarmType.SCHEDULED)
+				AlarmManager.deleteAlarm(AlarmManager.alarms[indexPath.row])
 			case 1:
-				AlarmManager.deleteAlarm(AlarmManager.repeatedAlarms[indexPath.row], alarmType: AlarmType.REPEATED)
+				AlarmManager.deleteAlarm(AlarmManager.repeatedAlarms[indexPath.row])
 			default:
 				print("Unimplemented Case")
 			}

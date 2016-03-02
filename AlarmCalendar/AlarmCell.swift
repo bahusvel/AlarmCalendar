@@ -19,6 +19,34 @@ class AlarmCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    static func indexesToText(indexes: [Int]) -> String{
+        var text = ""
+        let lookup = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        for index in indexes {
+            text += lookup[index]+", "
+        }
+        return text.substringToIndex(text.endIndex.advancedBy(-2))
+    }
+    
+    func initWithAlarm(alarm: Alarm){
+        self.alarm = alarm
+        if alarm.isRepeated {
+            enabledSwitch.hidden = false
+            dateLabel.hidden = true
+            label.text = alarm.title! + ", " + AlarmCell.indexesToText(alarm.repeatedDays)
+        } else {
+            enabledSwitch.hidden = true
+            dateLabel.hidden = false
+            label.text = alarm.title! + ", Scheduled"
+        }
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM"
+        let timeFormatter = NSDateFormatter()
+        timeFormatter.dateFormat = "hh:mm"
+        dateLabel.text = dateFormatter.stringFromDate(alarm.date)
+        timeLabel.text = timeFormatter.stringFromDate(alarm.date)
+    }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
