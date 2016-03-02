@@ -17,6 +17,7 @@
 		A888C0641C7E930100FCA6EB /* AlarmBell.caf in Resources */ = {isa = PBXBuildFile; fileRef = A888C0631C7E92D600FCA6EB /* AlarmBell.caf */; };
 		A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */; };
 		A888C0681C7FF44400FCA6EB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888C0671C7FF44400FCA6EB /* SettingsController.swift */; };
+		A888C0711C87911F00FCA6EB /* MultiSelectSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A888C0701C87911F00FCA6EB /* MultiSelectSegmentedControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,9 @@
 		A888C0631C7E92D600FCA6EB /* AlarmBell.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AlarmBell.caf; sourceTree = "<group>"; };
 		A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAlarmViewController.swift; sourceTree = "<group>"; };
 		A888C0671C7FF44400FCA6EB /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		A888C06E1C87911E00FCA6EB /* AlarmCalendar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AlarmCalendar-Bridging-Header.h"; sourceTree = "<group>"; };
+		A888C06F1C87911F00FCA6EB /* MultiSelectSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiSelectSegmentedControl.h; sourceTree = "<group>"; };
+		A888C0701C87911F00FCA6EB /* MultiSelectSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiSelectSegmentedControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,8 @@
 				A854E6491C7DB9FB00C7CEA4 /* AppDelegate.swift */,
 				A888C0671C7FF44400FCA6EB /* SettingsController.swift */,
 				A854E64B1C7DB9FB00C7CEA4 /* ViewController.swift */,
+				A888C06F1C87911F00FCA6EB /* MultiSelectSegmentedControl.h */,
+				A888C0701C87911F00FCA6EB /* MultiSelectSegmentedControl.m */,
 				A854E64D1C7DB9FB00C7CEA4 /* Main.storyboard */,
 				A888C0651C7E93D400FCA6EB /* AddAlarmViewController.swift */,
 				A854E65B1C7DC13600C7CEA4 /* AlarmCell.swift */,
@@ -75,6 +81,7 @@
 				A854E6501C7DB9FB00C7CEA4 /* Assets.xcassets */,
 				A854E6521C7DB9FB00C7CEA4 /* LaunchScreen.storyboard */,
 				A854E6551C7DB9FB00C7CEA4 /* Info.plist */,
+				A888C06E1C87911E00FCA6EB /* AlarmCalendar-Bridging-Header.h */,
 			);
 			path = AlarmCalendar;
 			sourceTree = "<group>";
@@ -153,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A888C0681C7FF44400FCA6EB /* SettingsController.swift in Sources */,
+				A888C0711C87911F00FCA6EB /* MultiSelectSegmentedControl.m in Sources */,
 				A854E64C1C7DB9FB00C7CEA4 /* ViewController.swift in Sources */,
 				A854E6601C7DC31800C7CEA4 /* Alarm.swift in Sources */,
 				A888C0661C7E93D400FCA6EB /* AddAlarmViewController.swift in Sources */,
@@ -270,11 +278,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AlarmCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bahus.AlarmCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AlarmCalendar/AlarmCalendar-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -282,11 +293,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = AlarmCalendar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bahus.AlarmCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AlarmCalendar/AlarmCalendar-Bridging-Header.h";
 			};
 			name = Release;
 		};

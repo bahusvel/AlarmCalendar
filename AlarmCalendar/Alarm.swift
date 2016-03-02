@@ -6,12 +6,12 @@
 //  Copyright © 2016 bahus. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 struct AlarmPropertyKey{
     static let dateKey = "date"
     static let repeatedKey = "repeated"
+    static let daysKey = "days"
     static let titleKey = "title"
     static let idKey = "id"
 }
@@ -52,21 +52,63 @@ class AlarmManager{
 		}
 		saveAlarms()
 	}
+    
+    static func makeNotification(alarm: Alarm) -> UILocalNotification{
+        let notification = UILocalNotification()
+        notification.fireDate = alarm.date
+        notification.alertTitle = alarm.title
+        let dateFormatter = NSDateFormatter()
+        if !alarm.isRepeated {
+            dateFormatter.dateFormat = "dd/MM hh:mm"
+        } else {
+            dateFormatter.dateFormat = "hh:mm"
+            notification.repeatInterval = .WeekOfYear
+        }
+        notification.alertBody = dateFormatter.stringFromDate(alarm.date)
+        notification.alertAction = "Dismiss"
+        notification.soundName = "AlarmBell.caf"
+        notification.category = "ALARM_CATEGORY"
+        return notification
+    }
 	
+    static func getNextDay(weekDay: Int) -> NSDate {
+        let weekIndex = (weekDay + 1) % 7 + 1 // convert indexes to weird order calendar
+        let today = NSDate()
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        if calendar.component(.Weekday, fromDate: today) == weekIndex {
+            return today
+        }
+        let nextDateComponent = NSDateComponents()
+        nextDateComponent.weekday = weekIndex
+        let date = calendar.nextDateAfterDate(today, matchingComponents: nextDateComponent, options: .MatchNextTime)
+        return date!
+    }
+    
+    static func setTimeComponent(date: NSDate, time: NSDate) -> NSDate{
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        let dateComponents = calendar.components([.Year, .Month, .Day], fromDate: date)
+        let timeComponents = calendar.components([.Hour, .Minute, .Second], fromDate: time)
+        dateComponents.hour = timeComponents.hour
+        dateComponents.minute = timeComponents.minute
+        dateComponents.second = timeComponents.second
+        return calendar.dateFromComponents(dateComponents)!
+    }
+    
 	static func scheduleAlarms(){
 		let application = UIApplication.sharedApplication()
 		application.cancelAllLocalNotifications()
 		for alarm in AlarmManager.alarms{
-			let notification = UILocalNotification()
-			notification.fireDate = alarm.date
-			notification.alertTitle = "Alarm"
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateFormat = "dd/MM hh:mm"
-			notification.alertBody = dateFormatter.stringFromDate(alarm.date)
-			notification.alertAction = "Dismiss"
-			notification.soundName = "AlarmBell.caf"
-			notification.category = "ALARM_CATEGORY"
-			application.scheduleLocalNotification(notification)
+            if alarm.isRepeated{
+                for day in alarm.repeatedDays{
+                    let notification = makeNotification(alarm)
+                    let date = getNextDay(day)
+                    notification.fireDate = setTimeComponent(date, time: alarm.date)
+                    application.scheduleLocalNotification(notification)
+                }
+            } else {
+                let notification = makeNotification(alarm)
+                application.scheduleLocalNotification(notification)
+            }
 		}
 	}
 	
@@ -127,6 +169,7 @@ class Alarm: NSObject, NSCoding{
 	let isRepeated: Bool
     var id: Int32
 	var title: String?
+    var repeatedDays = [Int]()
 	
 	init(date: NSDate, isRepeated: Bool){
 		self.date = date
@@ -139,15 +182,15 @@ class Alarm: NSObject, NSCoding{
         aCoder.encodeBool(isRepeated, forKey: AlarmPropertyKey.repeatedKey)
         aCoder.encodeObject(title, forKey: AlarmPropertyKey.titleKey)
         aCoder.encodeInt(id, forKey: AlarmPropertyKey.idKey)
+        aCoder.encodeObject(repeatedDays, forKey: AlarmPropertyKey.daysKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         let date = aDecoder.decodeObjectForKey(AlarmPropertyKey.dateKey) as! NSDate
         let isRepeated = aDecoder.decodeBoolForKey(AlarmPropertyKey.repeatedKey)
-        let title = aDecoder.decodeObjectForKey(AlarmPropertyKey.titleKey) as? String
         self.init(date: date, isRepeated: isRepeated)
-        self.title = title
-        let id = aDecoder.decodeInt32ForKey(AlarmPropertyKey.idKey)
-        self.id = id
+        self.title = aDecoder.decodeObjectForKey(AlarmPropertyKey.titleKey) as? String
+        self.id = aDecoder.decodeInt32ForKey(AlarmPropertyKey.idKey)
+        self.repeatedDays = aDecoder.decodeObjectForKey(AlarmPropertyKey.daysKey) as! [Int]
     }
 }
