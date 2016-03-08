@@ -103,18 +103,22 @@ class AlarmManager{
 		let application = UIApplication.sharedApplication()
 		application.cancelAllLocalNotifications()
 		for alarm in AlarmManager.alarms{
-            if alarm.isRepeated{
-                for day in alarm.repeatedDays{
-                    let notification = makeNotification(alarm)
-                    let date = getNextDay(day)
-                    notification.fireDate = setTimeComponent(date, time: alarm.date)
-                    application.scheduleLocalNotification(notification)
-                }
-            } else {
                 let notification = makeNotification(alarm)
                 application.scheduleLocalNotification(notification)
-            }
 		}
+        for alarm in AlarmManager.repeatedAlarms{
+            for day in alarm.repeatedDays{
+                let notification = makeNotification(alarm)
+                let date = getNextDay(day)
+                notification.fireDate = setTimeComponent(date, time: alarm.date)
+                /*
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd/MM hh:mm"
+                print("Scheduling for " + dateFormatter.stringFromDate(notification.fireDate!))
+                */
+                application.scheduleLocalNotification(notification)
+            }
+        }
 	}
 	
 	static func clearExpiredAlarms(){
